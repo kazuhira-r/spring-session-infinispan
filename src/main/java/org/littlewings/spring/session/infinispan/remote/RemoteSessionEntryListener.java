@@ -16,7 +16,7 @@ import org.springframework.session.events.SessionDeletedEvent;
 import org.springframework.session.events.SessionExpiredEvent;
 import org.springframework.util.Assert;
 
-// Hot Rod ClientListener, expired event not supported.
+// Hot Rod ClientListener, evicted event not supported.
 @ClientListener
 public class RemoteSessionEntryListener {
     private Log logger = LogFactory.getLog(RemoteSessionEntryListener.class);
