@@ -16,6 +16,7 @@ import org.springframework.session.SessionRepository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.SocketUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebAppConfiguration
 public class InfinispanRemoteRepositoryITests<S extends ExpiringSession> {
     private static HotRodServer server;
+    private static int port;
 
     @Autowired
     private RemoteCacheManager cacheManager;
@@ -33,7 +35,8 @@ public class InfinispanRemoteRepositoryITests<S extends ExpiringSession> {
 
     @BeforeClass
     public static void setUpClass() {
-        server = RemoteCacheUtils.startCacheServerDefaultConfiguration("springSessions");
+        port = SocketUtils.findAvailableTcpPort();
+        server = RemoteCacheUtils.startCacheServerDefaultConfiguration("springSessions", port);
     }
 
     @AfterClass
@@ -65,7 +68,7 @@ public class InfinispanRemoteRepositoryITests<S extends ExpiringSession> {
     static class InfinispanSessionConfig {
         @Bean(destroyMethod = "stop")
         public RemoteCacheManager cacheManager() {
-            return RemoteCacheUtils.cacheManager();
+            return RemoteCacheUtils.cacheManager(port);
         }
     }
 }

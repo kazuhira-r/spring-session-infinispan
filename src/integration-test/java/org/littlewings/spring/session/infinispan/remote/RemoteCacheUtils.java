@@ -14,7 +14,6 @@ import org.littlewings.spring.session.infinispan.embedded.EmbeddedCacheUtils;
 
 public interface RemoteCacheUtils {
     String HOST = "localhost";
-    int PORT = 31222;
 
     static org.infinispan.configuration.cache.Configuration defaultConfiguration() {
         return defaultConfigurationBuilder().build();
@@ -28,44 +27,44 @@ public interface RemoteCacheUtils {
                 .expiration();
     }
 
-    static HotRodServer startCacheServerDefaultConfiguration(String cacheName) {
+    static HotRodServer startCacheServerDefaultConfiguration(String cacheName, int port) {
         EmbeddedCacheManager embeddedCacheManager = EmbeddedCacheUtils.cacheManager(cacheName, defaultConfiguration());
         HotRodServer server = new HotRodServer();
         server.start(new HotRodServerConfigurationBuilder()
                         .host(HOST)
-                        .port(PORT)
+                        .port(port)
                         .build(),
                 embeddedCacheManager);
         return server;
     }
 
-    static HotRodServer startCacheServerDefaultConfiguration(String cacheName, Function<ConfigurationChildBuilder, ConfigurationChildBuilder> appendBuilder) {
+    static HotRodServer startCacheServerDefaultConfiguration(String cacheName, int port, Function<ConfigurationChildBuilder, ConfigurationChildBuilder> appendBuilder) {
         EmbeddedCacheManager embeddedCacheManager =
                 EmbeddedCacheUtils.cacheManager(cacheName, appendBuilder.apply(defaultConfigurationBuilder()).build());
         HotRodServer server = new HotRodServer();
         server.start(new HotRodServerConfigurationBuilder()
                         .host(HOST)
-                        .port(PORT)
+                        .port(port)
                         .build(),
                 embeddedCacheManager);
         return server;
     }
 
 
-    static HotRodServer startCacheServerConfigurationSpec(String configurationPath, String... useCacheNames) {
+    static HotRodServer startCacheServerConfigurationSpec(String configurationPath, int port, String... useCacheNames) {
         EmbeddedCacheManager embeddedCacheManager = EmbeddedCacheUtils.cacheManager(configurationPath);
         Arrays.stream(useCacheNames).forEach(cacheName -> embeddedCacheManager.getCache(cacheName));
 
         HotRodServer server = new HotRodServer();
         server.start(new HotRodServerConfigurationBuilder()
                         .host(HOST)
-                        .port(PORT)
+                        .port(port)
                         .build(),
                 embeddedCacheManager);
         return server;
     }
 
-    static RemoteCacheManager cacheManager() {
-        return new RemoteCacheManager(new ConfigurationBuilder().addServer().host(HOST).port(PORT).build());
+    static RemoteCacheManager cacheManager(int port) {
+        return new RemoteCacheManager(new ConfigurationBuilder().addServer().host(HOST).port(port).build());
     }
 }

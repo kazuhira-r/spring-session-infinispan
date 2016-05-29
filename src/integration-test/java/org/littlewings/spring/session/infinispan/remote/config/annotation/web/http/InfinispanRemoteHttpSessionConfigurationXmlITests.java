@@ -15,14 +15,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.SocketUtils;
 
 @RunWith(Enclosed.class)
 public class InfinispanRemoteHttpSessionConfigurationXmlITests extends AbstractInfinispanHttpSessionConfigurationXmlITests {
     private static HotRodServer server;
+    private static int port;
 
     @BeforeClass
     public static void setUpClass() {
-        server = RemoteCacheUtils.startCacheServerConfigurationSpec("org/littlewings/spring/session/infinispan/remote/config/annotation/web/http/infinispan-custom-hotrod.xml");
+        port = SocketUtils.findAvailableTcpPort();
+        server =
+                RemoteCacheUtils.startCacheServerConfigurationSpec("org/littlewings/spring/session/infinispan/remote/config/annotation/web/http/infinispan-custom-hotrod.xml",
+                        port);
     }
 
     @AfterClass
@@ -39,7 +44,7 @@ public class InfinispanRemoteHttpSessionConfigurationXmlITests extends AbstractI
         static class InfinispanSessionXmlConfigCustomCacheName {
             @Bean(destroyMethod = "stop")
             public RemoteCacheManager cacheManager() throws IOException {
-                return RemoteCacheUtils.cacheManager();
+                return RemoteCacheUtils.cacheManager(port);
             }
         }
     }
@@ -53,7 +58,7 @@ public class InfinispanRemoteHttpSessionConfigurationXmlITests extends AbstractI
         static class InfinispanSessionXmlConfigCustomCacheNameAndIdle {
             @Bean(destroyMethod = "stop")
             public RemoteCacheManager cacheManager() {
-                return RemoteCacheUtils.cacheManager();
+                return RemoteCacheUtils.cacheManager(port);
             }
         }
     }

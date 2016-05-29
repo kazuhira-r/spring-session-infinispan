@@ -15,18 +15,23 @@ import org.springframework.session.data.SessionEventRegistry;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.SocketUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 @WebAppConfiguration
 public class EnableInfinispanRemoteHttpSessionEventsITests extends AbstractEnableInfinispanHttpSessionEventsITests {
     private static HotRodServer server;
+    private static int port;
 
     @BeforeClass
     public static void setUpClass() {
+        port = SocketUtils.findAvailableTcpPort();
         server =
                 RemoteCacheUtils
-                        .startCacheServerDefaultConfiguration(SESSION_CACHE_NAME, cb -> cb.expiration().wakeUpInterval(1L, TimeUnit.SECONDS));
+                        .startCacheServerDefaultConfiguration(SESSION_CACHE_NAME,
+                                port,
+                                cb -> cb.expiration().wakeUpInterval(1L, TimeUnit.SECONDS));
     }
 
     @AfterClass
@@ -39,7 +44,7 @@ public class EnableInfinispanRemoteHttpSessionEventsITests extends AbstractEnabl
     static class InfinispanSessionConfig {
         @Bean(destroyMethod = "stop")
         public RemoteCacheManager cacheManager() {
-            return RemoteCacheUtils.cacheManager();
+            return RemoteCacheUtils.cacheManager(port);
         }
 
         @Bean
