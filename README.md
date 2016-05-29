@@ -17,6 +17,13 @@ Open Source In Memory Data Grid.
 
 ## Usage
 ### First
+Build and install.
+```sh
+$ git clone https://github.com/kazuhira-r/spring-session-infinispan.git
+$ cd spring-session-infinispan
+$ mvn install -DskipTests=true
+```
+
 Add dependency, this module.
 ```xml
         <dependency>
