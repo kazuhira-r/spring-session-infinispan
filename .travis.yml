@@ -3,6 +3,8 @@ language: java
 jdk:
   - oraclejdk8
 
+script: mvn integration-test
+
 notifications:
   on_success: never
   on_failure: never
