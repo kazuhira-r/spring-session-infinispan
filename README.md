@@ -1,4 +1,4 @@
-# Spring Session Infinispan
+# Spring Session Infinispan [![Build Status](https://travis-ci.org/kazuhira-r/spring-session-infinispan.svg?branch=master)](https://travis-ci.org/kazuhira-r/spring-session-infinispan)
 Spring Session implementation for Infinispan.
 
 ## [Spring Session](http://projects.spring.io/spring-session/)
