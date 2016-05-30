@@ -33,7 +33,7 @@ Add dependency, this module.
         </dependency>
 ```
 
-### for Embedded Mode
+### Embedded Mode
 Add dependency, Infinispan Core module.
 ```xml
         <dependency>
@@ -64,10 +64,8 @@ Write a Bean definition of EmbeddedCacheManager.
     }
 ```
 
-### for Client/Server Mode
-*Note:*
-
-It's necessary to define Cache on the server side beforehand in case of Client/Server Mode.
+### Client/Server Mode
+*Note: It's necessary to define Cache on the server side beforehand in case of Client/Server Mode.*
 
 Add depencency, Infinispan Client Hot Rod module.
 ```xml
