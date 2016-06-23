@@ -16,8 +16,8 @@ Open Source In Memory Data Grid.
 * sessionsCacheName - sessions store cache name (default: springSessions)
 
 ## Usage
-### First
-Build and install.
+### Build & Install
+git clone & Maven build.
 ```sh
 $ git clone https://github.com/kazuhira-r/spring-session-infinispan.git
 $ cd spring-session-infinispan
