@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
-import org.infinispan.commons.equivalence.ByteArrayEquivalence;
+import org.infinispan.commons.equivalence.AnyServerEquivalence;
 import org.infinispan.configuration.cache.ConfigurationChildBuilder;
 import org.infinispan.manager.EmbeddedCacheManager;
 import org.infinispan.server.hotrod.HotRodServer;
@@ -22,8 +22,8 @@ public interface RemoteCacheUtils {
     static org.infinispan.configuration.cache.ConfigurationChildBuilder defaultConfigurationBuilder() {
         return new org.infinispan.configuration.cache.ConfigurationBuilder()
                 .dataContainer()
-                .keyEquivalence(ByteArrayEquivalence.INSTANCE)
-                .valueEquivalence(ByteArrayEquivalence.INSTANCE)
+                .keyEquivalence(new AnyServerEquivalence())
+                .valueEquivalence(new AnyServerEquivalence())
                 .expiration();
     }
 

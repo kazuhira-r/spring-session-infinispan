@@ -7,10 +7,10 @@
         <jmx duplicate-domains="true"/>
         <local-cache name="defaltCache"/>
         <local-cache name="mySessions">
-            <data-container key-equivalence="org.infinispan.commons.equivalence.ByteArrayEquivalence" value-equivalence="org.infinispan.commons.equivalence.ByteArrayEquivalence"/>
+            <data-container key-equivalence="org.infinispan.commons.equivalence.AnyServerEquivalence" value-equivalence="org.infinispan.commons.equivalence.AnyServerEquivalence"/>
         </local-cache>
         <local-cache name="testSessions">
-            <data-container key-equivalence="org.infinispan.commons.equivalence.ByteArrayEquivalence" value-equivalence="org.infinispan.commons.equivalence.ByteArrayEquivalence"/>
+            <data-container key-equivalence="org.infinispan.commons.equivalence.AnyServerEquivalence" value-equivalence="org.infinispan.commons.equivalence.AnyServerEquivalence"/>
             <expiration max-idle="150000"/>
         </local-cache>
     </cache-container>
