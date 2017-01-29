@@ -17,7 +17,7 @@
 
         <!-- versions for libraries -->
         <assertj.version>3.6.1</assertj.version>
-        <infinispan.version>8.2.5.Final</infinispan.version>
+        <infinispan.version>8.2.6.Final</infinispan.version>
         <junit.version>4.12</junit.version>
         <servlet.api.version>3.1.0</servlet.api.version>
         <spring.version>4.3.4.RELEASE</spring.version>
