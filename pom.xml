@@ -26,7 +26,7 @@
 
         <!-- versions for Maven plugins -->
         <maven.failsafe.plugin.version>2.19.1</maven.failsafe.plugin.version>
-        <build.helper.maven.plugin.version>1.10</build.helper.maven.plugin.version>
+        <build.helper.maven.plugin.version>1.12</build.helper.maven.plugin.version>
     </properties>
 
     <dependencies>
