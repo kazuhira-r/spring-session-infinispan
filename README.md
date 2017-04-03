@@ -1,3 +1,8 @@
+## **This repository is no longer maintainance**
+
+*Since Infinispan 9, Infinispan provides implementation of Spring Session.*
+
+
 # Spring Session Infinispan [![Build Status](https://travis-ci.org/kazuhira-r/spring-session-infinispan.svg?branch=master)](https://travis-ci.org/kazuhira-r/spring-session-infinispan)
 Spring Session implementation for Infinispan.
 
